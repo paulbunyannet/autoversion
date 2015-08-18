@@ -1,1 +1,51 @@
-# autoversion
+#AutoVersion
+Cache busting mechanisim for front end assets, used with the cache busting mechanism provided by the 
+HTML5 Boilerplate Apache [.htaccess configuration](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess#L968-L984).
+
+## Installation
+
+In your terminal, just run:
+
+```bash
+composer require "paulbunyannet/autoversion":"dev-master"
+```
+
+## Configuration
+
+This package is framework agnostic, the configuration process is:
+
+```php
+// Auto-load composer packages
+use Pbc\AutoVersion\AutoVersion;
+require 'vendor/autoload.php';
+
+// Create new AutoVersion object and configure the document root
+$auto = new AutoVersion();
+$auto->setDocumentRoot($_SERVER['DOCUMENT_ROOT']);
+```
+
+Add to your .htaccess file, before any other routing mod rewrites
+
+```
+<IfModule mod_rewrite.c>
+     RewriteEngine On
+     RewriteCond %{REQUEST_FILENAME} !-f
+     RewriteRule ^(.+)\.(\d+)\.(bmp|css|cur|gif|ico|jpe?g|js|png|svgz?|webp|webmanifest)$ $1.$3 [L]
+</IfModule>
+```
+
+## Usage
+
+In your views, just call:
+
+```php
+// $pathToAsset is relative to the document root configured above, 
+$auto->file($pathToAsset);
+```
+
+for example:
+
+```php
+<link rel="stylesheet" href="<?=$auto->file('/css/main.css') ?>">
+<script src="<?=$auto->file('/js/main.js') ?>"></script>
+```
