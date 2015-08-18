@@ -1,0 +1,19 @@
+{
+  "name": "paulbunyannet/autoversion",
+  "description": "Auto versioning class for front end assets.",
+  "authors": [
+    {
+      "name": "naten",
+      "email": "naten@paulbunyan.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Pbc\\AutoVersion\\": "src/"
+    }
+  },
+  "minimum-stability": "stable"
+}
