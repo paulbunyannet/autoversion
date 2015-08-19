@@ -1,6 +1,7 @@
 {
   "name": "paulbunyannet/autoversion",
   "description": "Auto versioning class for front end assets.",
+  "license": "MIT",
   "authors": [
     {
       "name": "naten",
