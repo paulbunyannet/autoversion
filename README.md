@@ -49,3 +49,10 @@ for example:
 <link rel="stylesheet" href="<?=$auto->file('/css/main.css') ?>">
 <script src="<?=$auto->file('/js/main.js') ?>"></script>
 ```
+
+which will output file names with their modified time appended to file name:
+
+```
+<link rel="stylesheet" href="/css/main.1234567890.css">
+<script src="/js/main.1234567890.js"></script>
+```
