@@ -20,8 +20,7 @@ use Pbc\AutoVersion\AutoVersion;
 require 'vendor/autoload.php';
 
 // Create new AutoVersion object and configure the document root
-$auto = new AutoVersion();
-$auto->setDocumentRoot($_SERVER['DOCUMENT_ROOT']);
+$auto = new AutoVersion($_SERVER['DOCUMENT_ROOT']);
 ```
 
 Add to your .htaccess file, before any other routing mod rewrites
