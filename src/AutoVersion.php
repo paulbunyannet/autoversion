@@ -41,7 +41,7 @@ class AutoVersion {
     /**
      * @return mixed
      */
-    public function getDocumentRoot()
+    private function getDocumentRoot()
     {
         return $this->documentRoot;
     }
@@ -49,7 +49,7 @@ class AutoVersion {
     /**
      * @param mixed $documentRoot
      */
-    public function setDocumentRoot($documentRoot)
+    private function setDocumentRoot($documentRoot)
     {
         $this->documentRoot = $documentRoot;
     }
@@ -58,7 +58,7 @@ class AutoVersion {
      * @param $file
      * @return mixed
      */
-    protected function parseFileRegExp($file)
+    private function parseFileRegExp($file)
     {
         $mtime = $this->version($file);
         return preg_replace('{\\.([^./]+)$}', ".$mtime.\$1", $file);

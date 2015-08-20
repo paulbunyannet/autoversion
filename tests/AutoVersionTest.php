@@ -62,20 +62,11 @@ class AutoVersionTest extends \PHPUnit_Framework_TestCase
         $folder = '/path/to/public/html';
         $auto = new AutoVersion($folder);
 
-        $this->assertEquals($folder, $auto->getDocumentRoot());
+        $r = new \ReflectionObject($auto);
+        $p = $r->getMethod('getDocumentRoot');
+        $p->setAccessible(true);
 
-    }
-
-    /**
-     * Test setting document root from setter
-     */
-    public function testSetDocumentRootFromSetter()
-    {
-        $folder = '/path/to/public/html';
-        $auto = new AutoVersion();
-        $auto->setDocumentRoot($folder);
-
-        $this->assertEquals($folder, $auto->getDocumentRoot());
+        $this->assertEquals($folder, $p->invoke($auto, null));
 
     }
 
