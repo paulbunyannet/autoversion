@@ -7,7 +7,7 @@ HTML5 Boilerplate Apache [.htaccess configuration](https://github.com/h5bp/serve
 In your terminal, just run:
 
 ```bash
-composer require "paulbunyannet/autoversion":"dev-master"
+composer require "paulbunyannet/autoversion":"^1.0"
 ```
 
 ## Configuration
