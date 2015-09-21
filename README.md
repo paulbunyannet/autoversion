@@ -1,5 +1,9 @@
-#AutoVersion [![Build Status](https://travis-ci.org/paulbunyannet/autoversion.svg?branch=master)](https://travis-ci.org/paulbunyannet/autoversion)
-Cache busting mechanisim for front end assets, used with the cache busting mechanism provided by the 
+#paulbunyannet/autoversion
+
+[![Build Status](https://travis-ci.org/paulbunyannet/autoversion.svg?branch=master)](https://travis-ci.org/paulbunyannet/autoversion)
+[![Latest Version](https://img.shields.io/packagist/v/paulbunyannet/autoversion.svg?style=flat-square)](https://packagist.org/packages/paulbunyannet/autoversion)
+
+**paulbunyannet/autoversion** Cache busting mechanisim for front end assets, used with the cache busting mechanism provided by the 
 HTML5 Boilerplate Apache [.htaccess configuration](https://github.com/h5bp/server-configs-apache/blob/master/dist/.htaccess#L968-L984).
 
 ## Installation
