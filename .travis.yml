@@ -1,13 +1,20 @@
 language: php
-
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7.0
-
+- 5.4
+- 5.5
+- 5.6
+- 7.0
+- hhvm
+matrix:
+  allow_failures:
+  - php: hhvm
+notifications:
+  slack:
+    secure: ON8EvYCsW/x53sBXFcvispEEN1UqgG+ZrwwmDocXNTZU2HcpY4MLJrX4nzk0ccYaR0KtwZaTaQhJp8EQWODN4+2DA/zRsAJ5I0YRzRc8Bye9kFw49hcywmpV1hU/R6ofuOENObvBtkFrli7LqFjyI4YfqhGo0DingRf2WQ7acA3VUffWrfwhXAbaE0D8f3ooHX16HCotByxnm5y6Vec0zIVSNfPe99/JsncqPak8WkK4ZHw/kQvgT64gVG9yXd/CG7HZ7TuErBOagSNLyuWPehpWBEY28o3oZfOdFLA5YiZZqKxC6GQ665peFB+sBZk69YTyvkxVIaUt+RUSmeo7pTDAKMFK6N4fVTAvsLxCJ5jUdEsDWUw5mAuY/Sx+7hi0WNhrTUNRnF1Tm9DixQSOIBbpqHakQKhSzHDO/6JIkaNn1NGz3UiJBcw7T7Axpgvgjyr7nhCWJ744BOd59qwflFWKET0IfjZM6vIjpceOsmoiwph+mQ0thovHZ/Z6DnPzfJ5vITPJB+0DlgrtVewJgGwGRiO0XTc52/TFkyrtq3T4URE26hjzw8DspaiRP0oolFIJbK17cLtCDazpfOJdX7HuqZ8wbSy8nhKrMHleF8sxco2dXYmufl1yPWNcpSGQAyKPjhlX/Xl1s7xy2nAjTynZnGK/rB7CPTKV/j7OAi0=
 before_script:
-#  - composer self-update  # commented out as it crashes often
-  - composer install --prefer-source --no-interaction --dev
-
+- composer install --prefer-source --no-interaction --dev
 script: phpunit tests/AutoVersionTest.php --coverage-text
+cache:
+  directories:
+  - vendor
+  - $HOME/.composer/cache
