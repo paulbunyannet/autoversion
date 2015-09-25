@@ -6,7 +6,7 @@ namespace Pbc\AutoVersion;
  * Tests for AutoVersion class
  */
 
-require_once dirname(__DIR__) . '/src/AutoVersion.php';
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 /**
  * Class AutoVersionTest
@@ -30,6 +30,8 @@ class AutoVersionTest extends \PHPUnit_Framework_TestCase
         if(!file_exists(self::$tempFolder)) {
             mkdir(self::$tempFolder);
         }
+
+        putenv("DOCUMENT_ROOT=".__DIR__);
     }
 
     /**
@@ -123,6 +125,24 @@ class AutoVersionTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test trying to auto version a file by default setting by static option
+     */
+    public function testGetFileByStatic()
+    {
+
+        $fileName =  md5(microtime(true)).'-version.json';
+        file_put_contents(self::$tempFolder.'/'.$fileName, time());
+        $fileMTime = filemtime(self::$tempFolder.'/'.$fileName);
+
+        $versionedFile = AutoVersionSingle::file('/'.self::$tempFolderName.'/'.$fileName);
+
+        $this->assertNotEquals('/'.self::$tempFolderName.'/'.$fileName, $versionedFile);
+        $this->assertContains((string)$fileMTime, (string)$versionedFile);
+        $this->assertNotContains('?', (string)$versionedFile);
+
+    }
+
+    /**
      * Test trying to auto version a file by regular expression option
      */
     public function testGetFileByRegExp()
@@ -137,6 +157,28 @@ class AutoVersionTest extends \PHPUnit_Framework_TestCase
             $fileMTime = filemtime(self::$tempFolder . '/' . $fileName);
 
             $versionedFile = $auto->file('/' . self::$tempFolderName . '/' . $fileName, $option);
+
+            $this->assertNotEquals('/' . self::$tempFolderName . '/' . $fileName, $versionedFile);
+            $this->assertContains((string)$fileMTime, (string)$versionedFile);
+            $this->assertNotContains('?', (string)$versionedFile);
+        }
+
+    }
+
+    /**
+     * Test trying to auto version a file by regular expression option by static call
+     */
+    public function testGetFileByRegExpByStatic()
+    {
+        $folder = __DIR__;
+
+        foreach(['r','regexp'] as $option) {
+
+            $fileName = md5(microtime(true)) . '-version-'.$option.'.json';
+            file_put_contents(self::$tempFolder . '/' . $fileName, time());
+            $fileMTime = filemtime(self::$tempFolder . '/' . $fileName);
+
+            $versionedFile = AutoVersionSingle::file('/' . self::$tempFolderName . '/' . $fileName, $option);
 
             $this->assertNotEquals('/' . self::$tempFolderName . '/' . $fileName, $versionedFile);
             $this->assertContains((string)$fileMTime, (string)$versionedFile);
@@ -168,10 +210,24 @@ class AutoVersionTest extends \PHPUnit_Framework_TestCase
 
     }
 
+    /**
+     * Test trying to auto version a file by regular expression option by static call
+     */
+    public function testGetFileByQueryByStatic()
+    {
 
+        foreach(['q','query'] as $option) {
 
+            $fileName = md5(microtime(true)) . '-version-'.$option.'.json';
+            file_put_contents(self::$tempFolder . '/' . $fileName, time());
+            $fileMTime = filemtime(self::$tempFolder . '/' . $fileName);
 
+            $versionedFile = AutoVersionSingle::file('/' . self::$tempFolderName . '/' . $fileName, $option);
 
+            $this->assertNotEquals('/' . self::$tempFolderName . '/' . $fileName, $versionedFile);
+            $this->assertContains((string)$fileMTime, (string)$versionedFile);
+            $this->assertContains('?'.(string)$fileMTime, (string)$versionedFile);
+        }
 
-
+    }
 }
