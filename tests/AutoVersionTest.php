@@ -6,8 +6,6 @@ namespace Pbc\AutoVersion;
  * Tests for AutoVersion class
  */
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
-
 /**
  * Class AutoVersionTest
  * @package Pbc\AutoVersion
