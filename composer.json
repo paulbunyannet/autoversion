@@ -13,7 +13,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Pbc\\AutoVersion\\": "src/AutoVersion/"
+      "Pbc\\": "src/"
     }
   },
   "minimum-stability": "stable"

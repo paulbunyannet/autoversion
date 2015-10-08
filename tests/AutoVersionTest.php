@@ -1,6 +1,6 @@
 <?php
 
-namespace Pbc\AutoVersion;
+namespace Pbc;
 
 /**
  * Tests for AutoVersion class

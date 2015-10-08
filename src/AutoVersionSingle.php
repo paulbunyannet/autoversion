@@ -9,7 +9,7 @@
  * @package Pbc\AutoVersion
  */
 
-namespace Pbc\AutoVersion;
+namespace Pbc;
 
 
 /**

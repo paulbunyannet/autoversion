@@ -1,5 +1,5 @@
 <?php
-namespace Pbc\AutoVersion;
+namespace Pbc;
 
 /**
  * Class AutoVersion
